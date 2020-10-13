@@ -14,10 +14,11 @@ class RajaOngkir{
 	}
 
 	private function _request($path, $options = null){
-		$url 	= $this->endpoint . "/" . $path;
+		$url 	= $this->endpoint . "" . $path;
 		$curl 	= curl_init();
+
 		$config = array(
-			CURLOPT_URL => $url,
+			CURLOPT_URL 			=> $url,
 			CURLOPT_RETURNTRANSFER  => true,
 			CURLOPT_ENCODING 		=> "",
 			CURLOPT_MAXREDIRS 		=> 10,
@@ -28,13 +29,17 @@ class RajaOngkir{
 		    	"key:".$this->key
 			),
 		);
-		$config = array_merge($config, $options);
+		if ($options == null) {
+			$config = $config;
+		} else{
+			$config = array_merge($config, $options);
+		}
+		
 		curl_setopt_array($curl, $config);
 
 		$response = curl_exec($curl);
 		$err 	  = curl_error($curl);
 		curl_close($curl);
-
 		if ($err) {
 			throw new Exception($err, 1);
 		}
@@ -88,6 +93,42 @@ class RajaOngkir{
 		}
 		return null;
 	}
+
+	public function get_city_using_province_id($id = null){
+		if ($id == null) {
+			return empty($this->city) ? self::_request('/city') : $this->city;
+		}
+
+		if (empty($this->city)) {
+			return self::_request('/city?province='.$id);
+		}
+
+		foreach ($this->city as $key => $value) {
+			if ($value->city_id == $id) {
+				return $value;
+			}
+		}
+		return null;
+	}
+
+	public function get_city_with_province_id($id, $province){
+		if ($id && $province) {
+			return empty($this->city) ? self::_request('/city?id='.$id.'&province='.$province): self::_request('/city?id='.$id.'&province='.$province);
+		}
+
+		if (empty($this->city)) {
+
+			return self::_request('/city?id='.$id.'&province='.$province);
+		}
+
+		foreach ($this->city as $key => $value) {
+			if ($value->city_id == $id) {
+				return $value;
+			}
+		}
+		return null;
+	}
+
 
 	public function cost_shipping($origin, $destination, $weight, $courier){
 		$new_addon_options = [

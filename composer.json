@@ -1,0 +1,25 @@
+{
+    "name": "digital/rajaongkir",
+    "authors": [
+        {
+            "name": "Dicky perdian",
+            "email": "dickydraknes@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Dickyp\\RajaOngkir\\": "src/" 
+        } 
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dickyp\\RajaOngkir\\ROngkirPackageServiceProvider"
+            ],
+            "aliases": {
+                "RajaOngkir": "Dickyp\\RajaOngkir\\RajaOngkirFacade"
+            }
+        }
+    }
+}

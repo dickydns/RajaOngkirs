@@ -89,8 +89,7 @@ class RajaOngkir{
 		return null;
 	}
 
-	public function cost_shipping($origin, $destination, $weight, $courier)
-	{
+	public function cost_shipping($origin, $destination, $weight, $courier){
 		$new_addon_options = [
 			CURLOPT_CUSTOMREQUEST   => "POST",
 			CURLOPT_POSTFIELDS 		=> "origin=".$origin."&destination=".$destination."&weight=".$weight."&courier=".$courier,

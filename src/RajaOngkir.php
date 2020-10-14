@@ -7,8 +7,6 @@ class RajaOngkir{
 	private   $error;
 
 	public function __construct(){
-		$this->city 	= json_decode(file_get_contents(__DIR__ . '/config/city_tmp.json'));
-		$this->province = json_decode(file_get_contents(__DIR__ . '/config/province_tmp.json'));
 		$this->endpoint = config('rajaongkir.end_point');
 		$this->key 		= config('rajaongkir.token');
 	}
@@ -44,7 +42,7 @@ class RajaOngkir{
 		if ($err) {
 			echo "cURL Error #:" . $err;
 		} else {
-			$response =json_decode($response,true);
+			$response = json_decode($response,true);
 			$data 	  = $response['rajaongkir']['results'];
 			return $data;
 		}
@@ -53,46 +51,29 @@ class RajaOngkir{
 
 	public function get_city($id = null){
 		if ($id == null) {
-			return empty($this->city) ? self::_request('/city') : $this->city;
-		}
-
-		if (empty($this->city)) {
+			return self::_request('/city');
+		} else{
 			return self::_request('/city?id='.$id);
-		}
-
-		foreach ($this->city as $key => $value) {
-			if ($value->city_id == $id) {
-				return $value;
-			}
 		}
 		return null;
 	}
 
 	public function get_province($id = null){
 		if ($id == null) {
-			return empty($this->province) ? self::_request('/province') : $this->province;
-		}
-
-		if (empty($this->province)) {
+			return self::_request('/province');
+		} else{
 			return self::_request('/province?id='.$id);
 		}
 
-		foreach ($this->province as $key => $value) {
-			if ($value->province_id == $id) {
-				return $value;
-			}
-		}
 		return null;
 	}
 
-	public function get_city_using_province_id($id){
-		if ($id) {
+	public function get_city_using_province_id($id = null){
+		if ($id == null) {
+			return self::_request('/city');
+		} else{
 			return self::_request('/city?province='.$id);
 		}
-		if (empty($this->city)) {
-			return self::_request('/city?province='.$id);
-		}
-
 		return null;
 	}
 

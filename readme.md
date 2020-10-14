@@ -1,6 +1,13 @@
 Install composer 
 composer require dickyp/rajaongkir
 
+config app tambahkan
+Provider:
+Dickyp\RajaOngkir\ROngkirPackageServiceProvider::class,
+
+aliases:
+'RajaOngkir' => Dickyp\RajaOngkir\RajaOngkirFacade::class
+
 ambil data provinsi 
 RajaOngkir::get_province();
 Dengan Id 

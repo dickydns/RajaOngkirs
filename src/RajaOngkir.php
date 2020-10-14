@@ -1,4 +1,5 @@
 <?php
+
 namespace Dickyp\RajaOngkir;
 
 class RajaOngkir{
@@ -40,24 +41,15 @@ class RajaOngkir{
 		$response = curl_exec($curl);
 		$err 	  = curl_error($curl);
 		curl_close($curl);
+		
 		if ($err) {
-			throw new Exception($err, 1);
+			echo "cURL Error #:" . $err;
+		} else {
+			$response =json_decode($response,true);
+			$data 	  = $response['rajaongkir']['results'];
+			return $data;
 		}
-
-		if (!isset($response->rajaongkir)) {
-			$this->error = 'Response not valid';
-			return false;
-		}
-
-		$rajaongkir = $response->rajaongkir;
-
-		if ($rajaongkir->status->code == 400 ) {
-			$this->error = $rajaongkir->status->description;
-		}
-
-		if ($rajaongkir->status->code == 200 ) {
-			return $rajaongkir->results;
-		}
+		
 	}
 
 	public function get_city($id = null){
@@ -96,9 +88,10 @@ class RajaOngkir{
 
 	public function get_city_using_province_id($id){
 		if ($id) {
-			return empty($this->city) ? self::_request('/city?province='.$id) : $this->city;
+			return !empty($this->city) ? self::_request('/city?province='.$id) : $this->city;
 		}
 		if (empty($this->city)) {
+
 			return self::_request('/city?province='.$id);
 		}
 
@@ -129,7 +122,8 @@ class RajaOngkir{
 	}
 
 
-	public function cost_shipping($origin, $destination, $weight, $courier){
+	public function cost_shipping($origin, $destination, $weight, $courier)
+	{
 		$new_addon_options = [
 			CURLOPT_CUSTOMREQUEST   => "POST",
 			CURLOPT_POSTFIELDS 		=> "origin=".$origin."&destination=".$destination."&weight=".$weight."&courier=".$courier,

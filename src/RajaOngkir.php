@@ -94,11 +94,10 @@ class RajaOngkir{
 		return null;
 	}
 
-	public function get_city_using_province_id($id = null){
-		if ($id == null) {
-			return empty($this->city) ? self::_request('/city') : $this->city;
+	public function get_city_using_province_id($id){
+		if ($id) {
+			return empty($this->city) ? self::_request('/city?province='.$id) : $this->city;
 		}
-
 		if (empty($this->city)) {
 			return self::_request('/city?province='.$id);
 		}

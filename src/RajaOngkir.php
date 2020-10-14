@@ -1,5 +1,4 @@
 <?php
-
 namespace Dickyp\RajaOngkir;
 
 class RajaOngkir{
@@ -8,7 +7,7 @@ class RajaOngkir{
 	private   $error;
 
 	public function __construct(){
-		$this->city = json_decode(file_get_contents(__DIR__ . '/config/city_tmp.json'));
+		$this->city 	= json_decode(file_get_contents(__DIR__ . '/config/city_tmp.json'));
 		$this->province = json_decode(file_get_contents(__DIR__ . '/config/province_tmp.json'));
 		$this->endpoint = config('rajaongkir.end_point');
 		$this->key 		= config('rajaongkir.token');
@@ -88,36 +87,12 @@ class RajaOngkir{
 
 	public function get_city_using_province_id($id){
 		if ($id) {
-			return !empty($this->city) ? self::_request('/city?province='.$id) : $this->city;
+			return self::_request('/city?province='.$id);
 		}
 		if (empty($this->city)) {
-
 			return self::_request('/city?province='.$id);
 		}
 
-		foreach ($this->city as $key => $value) {
-			if ($value->city_id == $id) {
-				return $value;
-			}
-		}
-		return null;
-	}
-
-	public function get_city_with_province_id($id, $province){
-		if ($id && $province) {
-			return empty($this->city) ? self::_request('/city?id='.$id.'&province='.$province): self::_request('/city?id='.$id.'&province='.$province);
-		}
-
-		if (empty($this->city)) {
-
-			return self::_request('/city?id='.$id.'&province='.$province);
-		}
-
-		foreach ($this->city as $key => $value) {
-			if ($value->city_id == $id) {
-				return $value;
-			}
-		}
 		return null;
 	}
 

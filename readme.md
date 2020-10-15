@@ -1,6 +1,6 @@
-# RAJAONGKIR API UNTUK LARAVEL 7 ATAU LAINNYA
+# RAJAONGKIR API UNTUK LARAVEL 7  PNP BOSS
 > API RAJAONGKIR PLUGIN.
-Dengan menggunakan pure PHP
+silahkan lapor jika ada bug atau masukan
 
 
 
@@ -24,10 +24,65 @@ aliases:
 ```
 
 ## Usage example
+### PROVINSI
+#### Untuk mengambil data provinsi tanpa Id
+```sh
+RajaOngkir::get_province();
 
+callback
+  0 => array:2 [▼
+    "province_id" => "1"
+    "province" => "Bali"
+  ]
+  1 => array:2 [▼
+    "province_id" => "2"
+    "province" => "Bangka Belitung"
+  ]
+```
 
+#### Untuk mengambil data provinsi dengan Id
+```sh
+$id = 1;
+RajaOngkir::get_province($id);
 
+callback
+  0 => array:2 [▼
+    "province_id" => "1"
+    "province" => "Bali"
+  ]
+```
 
+### KOTA
+#### Untuk mengambil data kota tanpa Id
+```sh
+RajaOngkir::get_city()
+
+callback
+  0 => array:6 [▼
+    "city_id" => "1"
+    "province_id" => "21"
+    "province" => "Nanggroe Aceh Darussalam (NAD)"
+    "type" => "Kabupaten"
+    "city_name" => "Aceh Barat"
+    "postal_code" => "23681"
+  ]
+```
+#### Untuk mengambil data kota dengan Id
+
+```sh
+$id = 1;
+RajaOngkir::get_city($id)
+
+callback
+  0 => array:6 [▼
+    "city_id" => "1"
+    "province_id" => "21"
+    "province" => "Nanggroe Aceh Darussalam (NAD)"
+    "type" => "Kabupaten"
+    "city_name" => "Aceh Barat"
+    "postal_code" => "23681"
+  ]
+```
 
 ## Development setup
 

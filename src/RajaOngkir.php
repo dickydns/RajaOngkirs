@@ -65,7 +65,7 @@ class RajaOngkir{
 		}
 	}
 
-	public function get_city($id = null){
+	public function city($id = null){
 		if ($id == null) {
 			return self::_request('/city');
 		} else{
@@ -74,7 +74,7 @@ class RajaOngkir{
 		return null;
 	}
 
-	public function get_province($id = null){
+	public function province($id = null){
 		if ($id == null) {
 			return self::_request('/province');
 		} else{
@@ -84,7 +84,7 @@ class RajaOngkir{
 		return null;
 	}
 
-	public function get_city_using_province_id($id = null){
+	public function city_by_province($id = null){
 		if ($id == null) {
 			return self::_request('/city');
 		} else{
@@ -94,7 +94,7 @@ class RajaOngkir{
 	}
 
 
-	public function cost_shipping($origin, $destination, $weight, $courier){
+	public function shipping($origin, $destination, $weight, $courier){
 		$new_addon_options = [
 			CURLOPT_CUSTOMREQUEST   => "POST",
 			CURLOPT_POSTFIELDS 		=> "origin=".$origin."&destination=".$destination."&weight=".$weight."&courier=".$courier,

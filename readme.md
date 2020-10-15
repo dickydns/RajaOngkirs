@@ -84,6 +84,51 @@ callback
   ]
 ```
 
+#### Untuk mengambil data kota berdasarkan provinsi
+
+```sh
+$province_id = 1;
+RajaOngkir::get_city_using_province_id($province_id)
+
+callback
+ 0 => array:6 [▼
+    "city_id" => "17"
+    "province_id" => "1"
+    "province" => "Bali"
+    "type" => "Kabupaten"
+    "city_name" => "Badung"
+    "postal_code" => "80351"
+  ]
+```
+
+#### Untuk menghitung biaya pengiriman
+
+```sh
+$origin      = $id_city_origin; // id kota pengirim
+$destination = $id_city_destination; //id kota penerima
+$weight      = 10000;   //dalam satuan gram
+$courier     = "jne" bisa di isi kurir lain tergantung tipe akun.
+RajaOngkir::cost_shipping($origin, $destination, $weight, $courier);
+
+callback 
+
+  "code" => "jne"
+  "name" => "Jalur Nugraha Ekakurir (JNE)"
+  "costs" => array:2 [▼
+    0 => array:3 [▼
+      "service" => "OKE"
+      "description" => "Ongkos Kirim Ekonomis"
+      "cost" => array:1 [▶]
+    ]
+    1 => array:3 [▼
+      "service" => "REG"
+      "description" => "Layanan Reguler"
+      "cost" => array:1 [▶]
+    ]
+  ]
+```
+
+
 ## Development setup
 
 Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.

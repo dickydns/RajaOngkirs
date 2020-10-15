@@ -16,13 +16,12 @@ class RajaOngkir{
 		$curl 	= curl_init();
 
 		$default = array(
+			CURLOPT_URL 			=> $url,
 			CURLOPT_RETURNTRANSFER  => true,
 			CURLOPT_ENCODING 		=> "",
 			CURLOPT_MAXREDIRS 		=> 10,
 			CURLOPT_TIMEOUT 		=> 30,
 			CURLOPT_HTTP_VERSION 	=> CURL_HTTP_VERSION_1_1,
-
-			CURLOPT_URL 			=> $url,
 			CURLOPT_CUSTOMREQUEST 	=> "GET",
 			CURLOPT_HTTPHEADER 		=> array(
 		    	"key:".$this->key
@@ -48,6 +47,7 @@ class RajaOngkir{
 		$response = curl_exec($curl);
 		$err 	  = curl_error($curl);
 		curl_close($curl);
+		$response_convert = json_decode($response,true);
 		
 		if ($err) {
 			throw new Exception($err, 1);
@@ -55,13 +55,12 @@ class RajaOngkir{
 		
 		if (!isset($response_convert['rajaongkir'])) {
 			$this->error = 'Response not valid';
-			return false;
+			//return false;
 		}
-
 		$rajaongkir = $response_convert['rajaongkir'];
 
 		if ($response_convert['rajaongkir']['status']['code'] == 400 ) {
-			$this->error = $rajaongkir['status']['description'];
+			return $this->error = $rajaongkir['status']['description'];
 		}
 
 		if ($response_convert['rajaongkir']['status']['code'] == 200 ) {

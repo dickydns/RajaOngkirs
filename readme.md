@@ -148,7 +148,7 @@ callback
 ## Release History
 
 * V 1.0 
-    * Upload fitur, dasar ambil data kota, provinsi, ongkos kirim.
+    * Upload fitur dasar, ambil data kota, provinsi, ongkos kirim.
 
 
 

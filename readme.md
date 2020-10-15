@@ -13,15 +13,29 @@ composer require dickyp/rajaongkir
 
 ### Tambahkan
 
-Provider:
+#### Provider:
 ```sh
 Dickyp\RajaOngkir\ROngkirPackageServiceProvider::class,
 ```
 
-aliases:
+#### aliases:
 ```sh
 'RajaOngkir' => Dickyp\RajaOngkir\RajaOngkirFacade::class
 ```
+#### API TOKEN & Tipe akun
+
+```sh
+dalam folder laravel-project/config/config/rajaongkir.php
+
+pindahkan rajaongkir.php ke folder laravel-project/config/ 
+
+dalam file .env tambahkan 
+
+RONGKIR_ENDPOINT=http://rajaongkir.com/api/starter
+RONGKIR_KEY=API-TOKEN-ANDA
+```
+
+
 
 ## Usage example
 ### PROVINSI
@@ -178,43 +192,3 @@ Distributed under the XYZ license. See ``LICENSE`` for more information.
 [wiki]: https://github.com/yourname/yourproject/wiki
 
 
-
-
-
-
-
-
-
-Install composer 
-composer require dickyp/rajaongkir
-
-config app tambahkan
-Provider:
-Dickyp\RajaOngkir\ROngkirPackageServiceProvider::class,
-
-aliases:
-'RajaOngkir' => Dickyp\RajaOngkir\RajaOngkirFacade::class
-
-ambil data provinsi 
-
-RajaOngkir::get_province();
-
-Dengan Id 
-RajaOngkir::get_province($id);
-
-ambil data kota
-
-RajaOngkir::get_city();
-
-Dengan Id
-
-RajaOngkir::get_city($id);
-
-
-hitung biaya
-
-RajaOngkir::cost_shipping($origin, $destination, $weight, $courier);
-
-ambil kota berdasarkan provinsi
-
-RajaOngkir::get_city_using_province_id($province_id)

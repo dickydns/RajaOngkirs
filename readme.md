@@ -24,7 +24,6 @@ Dickyp\RajaOngkir\ROngkirPackageServiceProvider::class,
 ```
 #### API TOKEN & Tipe akun
 
-```
 
 setelah itu lakukan.
 ```sh

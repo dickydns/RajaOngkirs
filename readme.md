@@ -52,6 +52,13 @@ RONGKIR_KEY=API-TOKEN-ANDA
 
 
 ## Usage example
+
+untuk menggunakan tambahkan.
+
+```sh
+use RajaOngkir;
+```
+
 ### PROVINSI
 #### Untuk mengambil data provinsi tanpa Id
 ```sh

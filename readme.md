@@ -33,7 +33,7 @@ php artisan vendor:publish
 dalam folder laravel-project/config/config/rajaongkir.php
 
 pindahkan rajaongkir.php ke folder laravel-project/config/ 
-``` 
+```sh
 
 atau membuat manual file config dengan nama rajaongkir.php
 

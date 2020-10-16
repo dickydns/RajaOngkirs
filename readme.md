@@ -24,7 +24,7 @@ Dickyp\RajaOngkir\ROngkirPackageServiceProvider::class,
 ```
 #### API TOKEN & Tipe akun
 
-```sh
+```
 
 setelah itu lakukan.
 ```sh
@@ -33,7 +33,7 @@ php artisan vendor:publish
 dalam folder laravel-project/config/config/rajaongkir.php
 
 pindahkan rajaongkir.php ke folder laravel-project/config/ 
-```sh
+```
 
 atau membuat manual file config dengan nama rajaongkir.php
 
@@ -42,10 +42,10 @@ return [
     'end_point' => env('RONGKIR_ENDPOINT', 'http://rajaongkir.com/api/starter'),
     'token' => env('RONGKIR_KEY', 'token')
 ];
-```sh
+```
 
 dalam file .env tambahkan 
-
+```sh
 RONGKIR_ENDPOINT=http://rajaongkir.com/api/starter
 RONGKIR_KEY=API-TOKEN-ANDA
 ```
